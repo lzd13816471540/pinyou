@@ -1,4 +1,4 @@
-package com.pinyou.config.filter;
+package com.pinyou.config.filter.jwt;
 
 import com.pinyou.config.jwt.JwtToken;
 import org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter;
