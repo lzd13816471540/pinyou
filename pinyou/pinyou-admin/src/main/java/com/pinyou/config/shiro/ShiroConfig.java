@@ -45,7 +45,7 @@ public class ShiroConfig {
     }
 
     @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager,JwtFilter jwtFilter){
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager){
         ShiroFilterFactoryBean filterFactoryBean = new ShiroFilterFactoryBean();
         filterFactoryBean.setSecurityManager(securityManager);
 
@@ -54,7 +54,7 @@ public class ShiroConfig {
         map.put("/login","anon");
         //添加jwt过滤器
         HashMap<String, Filter> filterMap = new HashMap<>();
-        filterMap.put("jwt",jwtFilter);
+        filterMap.put("jwt",new JwtFilter());
         filterFactoryBean.setFilters(filterMap);
         //将jwt过滤器添加到执行链中
         map.put("/**","jwt");
@@ -67,10 +67,5 @@ public class ShiroConfig {
     @Bean
     public ShiroRealm shiroRealm() {
         return new ShiroRealm();
-    }
-
-    @Bean
-    public JwtFilter jwtFilter(){
-        return new JwtFilter();
     }
 }
