@@ -5,4 +5,9 @@
     <select id="selectOne" resultType="com.pinyou.domain.User">
         select * from sys_user where id = #{id}
     </select>
+
+
+    <select id="queryUserByLoginName" resultType="com.pinyou.domain.User">
+        select * from sys_user where login_name = #{loginName}
+    </select>
 </mapper>

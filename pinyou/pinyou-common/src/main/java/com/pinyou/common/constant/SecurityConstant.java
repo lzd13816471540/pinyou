@@ -8,5 +8,5 @@ package com.pinyou.common.constant;
  */
 public interface SecurityConstant {
 
-    String ACCOUNT = "userName";
+    String ACCOUNT = "loginName";
 }
