@@ -18,7 +18,7 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
         try {
-            return executeLogin(request,response);
+            return executeLogin(request, response);
         } catch (Exception e) {
             return false;
         }
@@ -29,7 +29,7 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
         HttpServletRequest req = (HttpServletRequest) request;
         String token = req.getHeader("Authorization");
         JwtToken jwtToken = new JwtToken(token);
-        getSubject(request,response).login(jwtToken);
+        getSubject(request, response).login(jwtToken);
         return true;
     }
 }

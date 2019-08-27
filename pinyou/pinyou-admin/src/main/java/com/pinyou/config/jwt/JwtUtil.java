@@ -36,54 +36,56 @@ public class JwtUtil {
         jwtUtil = this;
         jwtUtil.jwtProperties = this.jwtProperties;
     }
+
     /**
      * 生成jwt token
+     *
      * @return
      */
-    public static String createJwt(String acoount){
+    public static String createJwt(String acoount) {
         try {
             Date date = new Date(System.currentTimeMillis() + jwtUtil.jwtProperties.getExpireTime());
             Algorithm algorithm = Algorithm.HMAC256(jwtUtil.jwtProperties.getSecret());
             return JWT.create()
-                    .withClaim(SecurityConstant.ACCOUNT,acoount)
+                    .withClaim(SecurityConstant.ACCOUNT, acoount)
                     .withExpiresAt(date)
                     .sign(algorithm);
         } catch (JWTCreationException e) {
             e.printStackTrace();
-            log.info("生成token失败",e.getMessage());
+            log.info("生成token失败：{}", e.getMessage());
         }
         return null;
     }
 
     /**
-     *  验证token
+     * 验证token
      */
-    public static boolean isVerify(String token){
+    public static boolean isVerify(String token) {
         try {
-
             String secret = getClaim(token, SecurityConstant.ACCOUNT);
             Algorithm algorithm = Algorithm.HMAC256(secret);
             JWTVerifier verifier = JWT.require(algorithm)
                     .build();
             verifier.verify(token);
             return true;
-        }  catch (JWTVerificationException e) {
+        } catch (JWTVerificationException e) {
             e.printStackTrace();
-            log.info("验证token失败",e.getMessage());
+            log.info("验证token失败：{}", e.getMessage());
         }
         return false;
     }
 
     /**
      * 获得token中的信息无需secret解密也能获得
+     *
      * @return token中包含的用户名
      */
-    public static String getClaim(String token,String claim) {
+    public static String getClaim(String token, String claim) {
         try {
             DecodedJWT jwt = JWT.decode(token);
             return jwt.getClaim(claim).asString();
         } catch (JWTDecodeException e) {
-            log.info("获取token中用户信息失败",e.getMessage());
+            log.info("获取token中用户信息失败：{}", e.getMessage());
             return null;
         }
     }
