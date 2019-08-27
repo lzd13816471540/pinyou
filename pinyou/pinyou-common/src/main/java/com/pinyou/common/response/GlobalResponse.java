@@ -1,5 +1,6 @@
 package com.pinyou.common.response;
 
+import com.pinyou.common.sysenum.CommonResponseEnum;
 import lombok.Data;
 
 import java.util.Map;
@@ -34,5 +35,9 @@ public class GlobalResponse {
         this.resCode = resCode;
         this.resMsg = resMsg;
         this.data = data;
+    }
+
+    public static GlobalResponse success(Map<String,Object> data){
+        return new GlobalResponse(true, CommonResponseEnum.SUCCESS.getCode(),CommonResponseEnum.SUCCESS.getMsg(),data);
     }
 }
