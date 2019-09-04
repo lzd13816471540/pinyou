@@ -1,7 +1,9 @@
 package com.pinyou.common.response;
 
 import com.pinyou.common.sysenum.CommonResponseEnum;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Map;
 
@@ -12,6 +14,8 @@ import java.util.Map;
  * @Date 2019年08月16日 9:56
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class GlobalResponse {
     //是否成功
     private boolean isSuccess;
@@ -20,24 +24,26 @@ public class GlobalResponse {
     //返回信息
     private String resMsg;
     //返回数据
-    private Map<String,Object> data;
-
-    public GlobalResponse() {
-    }
+    private Object data;
 
     public GlobalResponse(String resCode, String resMsg) {
         this.resCode = resCode;
         this.resMsg = resMsg;
     }
 
-    public GlobalResponse(boolean isSuccess, String resCode, String resMsg, Map<String, Object> data) {
-        this.isSuccess = isSuccess;
-        this.resCode = resCode;
-        this.resMsg = resMsg;
-        this.data = data;
+    public static GlobalResponse ok(){
+        return new GlobalResponse(Boolean.TRUE, CommonResponseEnum.SUCCESS.getCode(),CommonResponseEnum.SUCCESS.getMsg(),null);
     }
 
-    public static GlobalResponse success(Map<String,Object> data){
-        return new GlobalResponse(true, CommonResponseEnum.SUCCESS.getCode(),CommonResponseEnum.SUCCESS.getMsg(),data);
+    public static GlobalResponse ok(Object data){
+        return new GlobalResponse(Boolean.TRUE, CommonResponseEnum.SUCCESS.getCode(),CommonResponseEnum.SUCCESS.getMsg(),data);
+    }
+
+    public static GlobalResponse error(){
+        return new GlobalResponse(Boolean.FALSE, CommonResponseEnum.ERROR.getCode(),CommonResponseEnum.ERROR.getMsg(),null);
+    }
+
+    public static GlobalResponse error(String resCode,String resMsg,Object data){
+        return new GlobalResponse(Boolean.FALSE, resCode,resMsg,data);
     }
 }
