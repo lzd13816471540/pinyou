@@ -2,6 +2,8 @@ package com.pinyou.domain;
 
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * @ClassName UserInfo
  * @Discription TODO
@@ -13,6 +15,8 @@ public class User {
 
     private Integer id;
 
+    private String loginName;
+
     private String userName;
 
     private String userPwd;
@@ -22,4 +26,12 @@ public class User {
     private String status;
 
     private String remark;
+
+    private String createName;
+
+    private String updateName;
+
+    private Date createTime;
+
+    private Date updateTime;
 }

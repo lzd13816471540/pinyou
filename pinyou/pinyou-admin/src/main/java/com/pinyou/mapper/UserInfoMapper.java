@@ -12,4 +12,6 @@ import org.apache.ibatis.annotations.Param;
 public interface UserInfoMapper {
 
     User selectOne(@Param("id") Integer id);
+
+    User queryUserByLoginName(String loginName);
 }

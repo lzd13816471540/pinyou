@@ -1,12 +1,11 @@
 package com.pinyou.config.shiro;
 
-import com.pinyou.config.filter.JwtFilter;
+import com.pinyou.config.filter.jwt.JwtFilter;
 import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
 import org.apache.shiro.mgt.DefaultSubjectDAO;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -45,7 +44,7 @@ public class ShiroConfig {
     }
 
     @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager){
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager,JwtFilter jwtFilter){
         ShiroFilterFactoryBean filterFactoryBean = new ShiroFilterFactoryBean();
         filterFactoryBean.setSecurityManager(securityManager);
 
@@ -54,7 +53,7 @@ public class ShiroConfig {
         map.put("/login","anon");
         //添加jwt过滤器
         HashMap<String, Filter> filterMap = new HashMap<>();
-        filterMap.put("jwt",new JwtFilter());
+        filterMap.put("jwt",jwtFilter);
         filterFactoryBean.setFilters(filterMap);
         //将jwt过滤器添加到执行链中
         map.put("/**","jwt");
@@ -67,5 +66,10 @@ public class ShiroConfig {
     @Bean
     public ShiroRealm shiroRealm() {
         return new ShiroRealm();
+    }
+
+    @Bean
+    public JwtFilter jwtFilter(){
+        return new JwtFilter();
     }
 }
