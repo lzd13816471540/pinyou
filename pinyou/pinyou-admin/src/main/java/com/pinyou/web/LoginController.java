@@ -1,13 +1,11 @@
 package com.pinyou.web;
 
 import com.pinyou.common.response.GlobalResponse;
-import com.pinyou.common.sysenum.CommonResponseEnum;
+import com.pinyou.common.enums.CommonResponseEnum;
 import com.pinyou.config.jwt.JwtUtil;
 import com.pinyou.domain.User;
 import com.pinyou.mapper.UserInfoMapper;
-import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.crypto.hash.Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,8 +38,6 @@ public class LoginController {
     @RequestMapping("/getUserList")
     public GlobalResponse doLogin(){
         User user = userInfoMapper.selectOne(1);
-        Map<String, Object> hashMap = new HashMap<>();
-        hashMap.put("data",user);
-        return GlobalResponse.success(hashMap);
+        return GlobalResponse.ok(user);
     }
 }

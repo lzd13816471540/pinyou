@@ -1,7 +1,10 @@
 package com.pinyou.web;
 
+import com.pinyou.config.jwt.JwtUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Random;
 
 /**
  * @ClassName HelloController
@@ -16,8 +19,12 @@ public class HelloController{
     @RequestMapping("hello")
     public String hello(){
 
-        int i = 1/0;
-
+        JwtUtil.createJwt("");
+        Random e = new Random();
+        if(Boolean.TRUE){
+            String s = "a";
+            String[] split = s.split("");
+        }
         return "hello world";
     }
 }
