@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pinyou.mapper.UserInfoMapper">
 
-    <select id="selectOne" resultType="com.pinyou.domain.User">
+    <select id="selectOne" resultType="com.pinyou.domain.SysUser">
         select * from sys_user where id = #{id}
     </select>
 
 
-    <select id="queryUserByLoginName" resultType="com.pinyou.domain.User">
+    <select id="queryUserByLoginName" resultType="com.pinyou.domain.SysUser">
         select * from sys_user where login_name = #{loginName}
     </select>
 </mapper>

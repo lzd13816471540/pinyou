@@ -1,6 +1,6 @@
 package com.pinyou.mapper;
 
-import com.pinyou.domain.User;
+import com.pinyou.domain.SysUser;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface UserInfoMapper {
 
-    User selectOne(@Param("id") Integer id);
+    SysUser selectOne(@Param("id") Integer id);
 
-    User queryUserByLoginName(String loginName);
+    SysUser queryUserByLoginName(String loginName);
 }

@@ -3,7 +3,7 @@ package com.pinyou.config.shiro;
 import com.pinyou.common.constant.SecurityConstant;
 import com.pinyou.config.jwt.JwtToken;
 import com.pinyou.config.jwt.JwtUtil;
-import com.pinyou.domain.User;
+import com.pinyou.domain.SysUser;
 import com.pinyou.mapper.UserInfoMapper;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -47,7 +47,7 @@ public class ShiroRealm extends AuthorizingRealm {
             throw new AuthenticationException("无效的token");
         }
 
-        User user = mapper.queryUserByLoginName(loginName);
+        SysUser user = mapper.queryUserByLoginName(loginName);
         if(user == null){
             throw new AuthenticationException("用户不存在");
         }
