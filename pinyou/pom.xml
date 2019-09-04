@@ -20,6 +20,10 @@
         <commons-lang3.version>3.7</commons-lang3.version>
         <mysql.version>5.1.40</mysql.version>
         <druid.version>1.1.10</druid.version>
+        <shiro-spring.version>1.4.0</shiro-spring.version>
+        <java-jwt.version>3.4.0</java-jwt.version>
+        <jjwt.version>0.9.0</jjwt.version>
+        <skipTests>true</skipTests>
     </properties>
 
     <dependencyManagement>
@@ -43,6 +47,25 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>
+            </dependency>
+            <!--shiro-->
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring</artifactId>
+                <version>${shiro-spring.version}</version>
+            </dependency>
+            <!--JWT依赖-->
+            <!--JWT-->
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>${java-jwt.version}</version>
+            </dependency>
+            <!--JJWT-->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
             </dependency>
             <!--commons-lang3工具类-->
             <dependency>

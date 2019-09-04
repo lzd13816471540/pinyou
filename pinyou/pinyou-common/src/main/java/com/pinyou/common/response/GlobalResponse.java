@@ -1,11 +1,9 @@
 package com.pinyou.common.response;
 
-import com.pinyou.common.sysenum.CommonResponseEnum;
+import com.pinyou.common.enums.CommonResponseEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Map;
 
 /**
  * @ClassName GlobalResponse

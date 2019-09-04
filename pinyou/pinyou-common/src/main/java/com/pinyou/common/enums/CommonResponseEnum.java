@@ -1,4 +1,4 @@
-package com.pinyou.common.sysenum;
+package com.pinyou.common.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +13,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum CommonResponseEnum {
 
-    SUCCESS("200", "成功");
+    SUCCESS("200", "成功"),
+    ERROR("500","系统内部错误");
 
     private String code;
 
