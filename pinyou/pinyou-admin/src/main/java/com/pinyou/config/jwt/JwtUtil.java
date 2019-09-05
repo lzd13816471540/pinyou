@@ -25,27 +25,18 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    @Autowired
-    private JwtProperties jwtProperties;
-
-    @Autowired
-    private static JwtUtil jwtUtil;
-
-    @PostConstruct
-    public void init() {
-        jwtUtil = this;
-        jwtUtil.jwtProperties = this.jwtProperties;
-    }
+    //JWT加密密钥
+    private static final String SECRETKET = "";
 
     /**
      * 生成jwt token
      *
      * @return
      */
-    public static String createJwt(String acoount) {
+    public static String createJwt(String acoount,long expireTime) {
         try {
-            Date date = new Date(System.currentTimeMillis() + jwtUtil.jwtProperties.getExpireTime());
-            Algorithm algorithm = Algorithm.HMAC256(jwtUtil.jwtProperties.getSecret());
+            Date date = new Date(System.currentTimeMillis() + expireTime);
+            Algorithm algorithm = Algorithm.HMAC256(SECRETKET);
             return JWT.create()
                     .withClaim(SecurityConstant.ACCOUNT, acoount)
                     .withExpiresAt(date)
@@ -62,8 +53,7 @@ public class JwtUtil {
      */
     public static boolean isVerify(String token) {
         try {
-            String secret = getClaim(token, SecurityConstant.ACCOUNT);
-            Algorithm algorithm = Algorithm.HMAC256(jwtUtil.jwtProperties.getSecret());
+            Algorithm algorithm = Algorithm.HMAC256(SECRETKET);
             JWTVerifier verifier = JWT.require(algorithm)
                     .build();
             verifier.verify(token);
