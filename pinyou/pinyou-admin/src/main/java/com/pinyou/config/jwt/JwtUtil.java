@@ -9,10 +9,7 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.pinyou.common.constant.SecurityConstant;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.util.Date;
 
 /**
@@ -22,7 +19,6 @@ import java.util.Date;
  * @Date 2019年08月14日 15:44
  */
 @Slf4j
-@Component
 public class JwtUtil {
 
     //JWT加密密钥
