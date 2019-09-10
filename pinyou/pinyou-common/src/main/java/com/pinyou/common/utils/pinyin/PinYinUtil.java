@@ -1,6 +1,5 @@
 package com.pinyou.common.utils.pinyin;
 
-import lombok.extern.slf4j.Slf4j;
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
@@ -14,7 +13,6 @@ import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombi
  * @author: zhidong.li
  * @createDate: 2019年09月06日 9:45
  */
-@Slf4j
 public class PinYinUtil {
 
     /**
