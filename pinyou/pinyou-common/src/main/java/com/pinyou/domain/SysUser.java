@@ -11,7 +11,7 @@ import java.util.Date;
  * @Date 2019年08月12日 16:22
  */
 @Data
-public class User {
+public class SysUser {
 
     private Integer id;
 

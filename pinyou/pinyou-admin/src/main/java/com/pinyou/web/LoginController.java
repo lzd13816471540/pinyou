@@ -6,6 +6,7 @@ import com.pinyou.domain.SysUser;
 import com.pinyou.mapper.UserInfoMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,12 +22,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LoginController {
 
+    @Value("${jwt.token.expireTime}")
+    private long expireTime;
+
     @Autowired
     private UserInfoMapper userInfoMapper;
 
     @RequestMapping( value = "/login",method = RequestMethod.POST)
     public GlobalResponse login(@RequestBody SysUser sysUser){
-        return GlobalResponse.ok(JwtUtil.createJwt(sysUser.getLoginName()));
+        return GlobalResponse.ok(JwtUtil.createJwt(sysUser.getLoginName(),expireTime));
     }
 
     @RequestMapping("/getUserList")

@@ -23,7 +23,7 @@
         <shiro-spring.version>1.4.0</shiro-spring.version>
         <java-jwt.version>3.4.0</java-jwt.version>
         <jjwt.version>0.9.0</jjwt.version>
-        <skipTests>true</skipTests>
+        <skipTests>true</skipTests><!-- 跳过测试 -->
     </properties>
 
     <dependencyManagement>
@@ -87,5 +87,19 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <!-- 一般而言，target与source是保持一致的，但是，有时候为了让程序能在其他版本的jdk中运行(对于低版本目标jdk，源代码中不能使用低版本jdk中不支持的语法)，会存在target不同于source的情况 -->
+                    <source>${java.version}</source> <!-- 源代码使用的JDK版本 -->
+                    <target>${java.version}</target> <!-- 需要生成的目标class文件的编译版本 -->
+                    <encoding>UTF-8</encoding><!-- 字符集编码 -->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
