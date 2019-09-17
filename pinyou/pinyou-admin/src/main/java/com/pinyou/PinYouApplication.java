@@ -14,7 +14,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @MapperScan(basePackages = {"com.pinyou.mapper"})
 public class PinYouApplication {
-
+    /*
+    * https://blog.csdn.net/u013257679/article/details/54020815
+    * */
     public static void main(String[] args) {
         SpringApplication.run(PinYouApplication.class, args);
     }
